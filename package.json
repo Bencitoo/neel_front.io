@@ -1,7 +1,7 @@
 {
   "name": "neel",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://bencitoo.github.io/neel_front.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
