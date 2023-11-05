@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/neel_front.io/static/css/main.297f2424.css",
-    "main.js": "/neel_front.io/static/js/main.c487cd9e.js",
+    "main.js": "/neel_front.io/static/js/main.c045f5f4.js",
     "static/js/787.d6a3146c.chunk.js": "/neel_front.io/static/js/787.d6a3146c.chunk.js",
     "static/media/personalized.jpg": "/neel_front.io/static/media/personalized.9e4a3f9be90667b35b4c.jpg",
     "static/media/plain.jpg": "/neel_front.io/static/media/plain.c277f10098ca65d11322.jpg",
     "static/media/chinese.jpg": "/neel_front.io/static/media/chinese.c1c94be13af46c42653a.jpg",
     "index.html": "/neel_front.io/index.html",
     "main.297f2424.css.map": "/neel_front.io/static/css/main.297f2424.css.map",
-    "main.c487cd9e.js.map": "/neel_front.io/static/js/main.c487cd9e.js.map",
+    "main.c045f5f4.js.map": "/neel_front.io/static/js/main.c045f5f4.js.map",
     "787.d6a3146c.chunk.js.map": "/neel_front.io/static/js/787.d6a3146c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.297f2424.css",
-    "static/js/main.c487cd9e.js"
+    "static/js/main.c045f5f4.js"
   ]
 }
