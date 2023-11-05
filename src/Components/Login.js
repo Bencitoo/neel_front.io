@@ -1,6 +1,6 @@
 // Login.js
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom'; // Import Link
 import '../Styles/Login.css';
 
 const Login = ({ authenticateUser, isAuthenticated }) => {
@@ -9,7 +9,6 @@ const Login = ({ authenticateUser, isAuthenticated }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // useEffect to extract and set values from query parameters on component mount
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const usernameParam = params.get('username');
@@ -23,8 +22,6 @@ const Login = ({ authenticateUser, isAuthenticated }) => {
       setPassword(passwordParam);
     }
   }, [location.search]);
-
-  // Rest of your component logic
 
   const handleLogin = () => {
     // Your login logic here
@@ -46,6 +43,9 @@ const Login = ({ authenticateUser, isAuthenticated }) => {
         <button type="button" onClick={handleLogin}>
           Log In
         </button>
+
+        {/* Add Sign Up button and message */}
+        <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
       </form>
     </div>
   );
