@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { CartContext } from './CartContext';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { CartContext } from './CartContext'; // Import CartContext
 import '../Styles/cart.css';
 
 const Cart = () => {
   const navigate = useNavigate();
-  const { cartItems, removeFromCart, checkout } = useContext(CartContext);
+  const { cartItems, removeFromCart } = useContext(CartContext);
+
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
 
   return (
     <div className="container">
@@ -19,7 +23,7 @@ const Cart = () => {
               <button onClick={() => removeFromCart(item)}>Remove</button>
             </div>
           ))}
-          <button className="checkout-button" onClick={checkout}>Checkout</button>
+          <button className="checkout-button" onClick={handleCheckout}>Proceed to Checkout</button>
         </div>
       ) : (
         <p>Your shopping cart is empty.</p>
