@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import { CartContext } from './CartContext'; // Import CartContext
+import { useNavigate } from 'react-router-dom';
+import { CartContext } from './CartContext';
 import '../Styles/cart.css';
 
 const Cart = () => {
-  const navigate = useNavigate(); // Hook to navigate to different routes
+  const navigate = useNavigate();
   const { cartItems, removeFromCart, checkout } = useContext(CartContext);
 
   return (
@@ -14,7 +14,8 @@ const Cart = () => {
         <div>
           {cartItems.map((item, index) => (
             <div key={index} className="cart-item">
-              <p>{item}</p>
+              <img src={item.image} alt={item.name} className="cart-item-image" />
+              <p>{item.name}</p>
               <button onClick={() => removeFromCart(item)}>Remove</button>
             </div>
           ))}
@@ -23,7 +24,6 @@ const Cart = () => {
       ) : (
         <p>Your shopping cart is empty.</p>
       )}
-      {/* Back Button to navigate to /auth-home */}
       <button className="back-button" onClick={() => navigate('/auth-home')}>
         Back to Home
       </button>

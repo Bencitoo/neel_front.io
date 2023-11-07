@@ -18,6 +18,11 @@ const AuthHome = () => {
     window.location.href = '/login';
   };
 
+  // Function to create a product object and add it to the cart
+  const addProductToCart = (name, image) => {
+    addToCart({ name, image });
+  };
+
   return (
     <div className="auth-home-container">
       <div className="auth-home-content">
@@ -32,18 +37,16 @@ const AuthHome = () => {
           <div className="featured-products">
             {/* Product 1 */}
             <div className="product">
-              <img src={chineseImage} alt="Featured Product 1" />
-              {/* Add to Cart button below the image */}
+              <img src={chineseImage} alt="Chinese Product" />
               <div className="add-to-cart">
-                <button onClick={() => addToCart('Chinese Product')}>Add to Cart</button>
+                <button onClick={() => addProductToCart('Chinese Product', chineseImage)}>Add to Cart</button>
               </div>
             </div>
             {/* Product 2 */}
             <div className="product">
-              <img src={plainImage} alt="Featured Product 2" />
-              {/* Add to Cart button below the image */}
+              <img src={plainImage} alt="Plain Product" />
               <div className="add-to-cart">
-                <button onClick={() => addToCart('Plain Product')}>Add to Cart</button>
+                <button onClick={() => addProductToCart('Plain Product', plainImage)}>Add to Cart</button>
               </div>
             </div>
           </div>
