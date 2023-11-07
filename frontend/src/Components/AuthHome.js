@@ -1,7 +1,6 @@
-// AuthHome.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaList, FaShoppingCart, FaCog } from 'react-icons/fa'; // Import icons
+import { FaList, FaShoppingCart, FaCog, FaSignOutAlt } from 'react-icons/fa'; // Import icons
 import '../Styles/AuthHome.css';
 
 // Import images
@@ -12,6 +11,11 @@ import personalizedImage from '../Styles/personalized.jpg';
 const AuthHome = () => {
   // Replace this URL with the actual URL of the user's profile picture
   const userProfilePicture = 'https://avatars.githubusercontent.com/u/112555352?s=400&u=bd814d1e9298229771e502896aed4bc121b700b2&v=4';
+
+  const handleLogout = () => {
+    // Redirect the user to the login page upon logout
+    window.location.href = '/login'; // Change the URL as needed
+  };
 
   return (
     <div className="auth-home-container">
@@ -42,13 +46,17 @@ const AuthHome = () => {
             Product List
           </Link>
           <Link to="/cart" className="auth-button">
-            <FaShoppingCart className="icon" />
+            <FaShoppingCart className = "icon" />
             Cart
           </Link>
           <Link to="/settings" className="auth-button">
             <FaCog className="icon" />
             Settings
           </Link>
+          <button className="auth-button" onClick={handleLogout}>
+            <FaSignOutAlt className="icon" />
+            Logout
+          </button>
         </div>
       </div>
     </div>
