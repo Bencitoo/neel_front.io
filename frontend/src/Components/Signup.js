@@ -1,6 +1,6 @@
-// Signup.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 import '../Styles/Signup.css';
 
 const Signup = () => {
@@ -23,24 +23,31 @@ const Signup = () => {
     setPassword(event.target.value);
   };
 
+  const signupUser = async () => {
+    try {
+      const response = await Axios.post('http://localhost:2000/api/signup', { username, email, password });
+      if (response.status === 201) {
+        setSuccessMessage('Account successfully created!');
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      } else {
+        setErrorMessage(response.data.error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Password length validation
     if (password.length < 8) {
       setErrorMessage('Password must be at least 8 characters');
       return;
     }
 
-    // Add your signup logic here (simulated success for demonstration)
-    // Replace the following lines with actual signup logic
-    console.log('Signup form submitted:', { username, email, password });
-    setSuccessMessage('Account successfully created!');
-
-    // Redirect to the login page after a delay (simulated success message display)
-    setTimeout(() => {
-      navigate('/login');
-    }, 2000);
+    signupUser();
   };
 
   return (

@@ -2,10 +2,8 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 
-exports.signup = async (request, response) => {
-  // const errors = validationResult(request);
-  // return response.status(400).json({ errors: errors.array() });
 
+exports.signup = async (request, response) => {
   try {
     const user = await User.findOne({ email: request.body.email });
     if (user) {
