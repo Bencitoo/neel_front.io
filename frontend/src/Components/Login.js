@@ -1,51 +1,60 @@
-// Login.js
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom'; // Import Link
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import Axios from 'axios';
 import '../Styles/Login.css';
 
-const Login = ({ authenticateUser, isAuthenticated }) => {
+const Login = ({ authenticateUser }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const usernameParam = params.get('username');
-    const passwordParam = params.get('password');
-
-    if (usernameParam) {
-      setUsername(usernameParam);
-    }
-
-    if (passwordParam) {
-      setPassword(passwordParam);
+    const emailParam = params.get('email');
+    if (emailParam) {
+      setEmail(emailParam);
     }
   }, [location.search]);
 
-  const handleLogin = () => {
-    // Your login logic here
-    authenticateUser(); // Call this function on successful login
-    navigate('/'); // Redirect to home
+  const loginUser = async () => {
+    try {
+      const response = await Axios.post('http://localhost:2000/api/signin', { email, password });
+      if (response.status === 200) {
+        authenticateUser();
+        navigate('/');
+      } else {
+        setErrorMessage(response.data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div className="login-container">
       <h2>Login</h2>
       <form>
-        {/* Your login form */}
-        <label>Username</label>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-
-        <label>Password</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-
-        <button type="button" onClick={handleLogin}>
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="button" onClick={loginUser}>
           Log In
         </button>
-
-        {/* Add Sign Up button and message */}
-        <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <p>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
       </form>
     </div>
   );
