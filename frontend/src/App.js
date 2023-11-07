@@ -1,6 +1,6 @@
-// App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { CartProvider } from './Components/CartContext'; // Import the CartProvider
 import Home from './Components/Home';
 import AuthHome from './Components/AuthHome';
 import ProductList from './Components/ProductList';
@@ -15,41 +15,43 @@ function App() {
   const authenticateUser = () => setIsAuthenticated(true);
 
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            isAuthenticated ? (
-              <Navigate to="/auth-home" />
-            ) : (
-              <Home authenticateUser={authenticateUser} isAuthenticated={isAuthenticated} />
-            )
-          }
-        />
-        <Route
-          path="/auth-home"
-          element={
-            isAuthenticated ? (
-              <AuthHome />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route path="/product-list" element={<ProductList />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route
-          path="/settings"
-          element={isAuthenticated ? <Settings /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/login"
-          element={<Login authenticateUser={authenticateUser} isAuthenticated={isAuthenticated} />}
-        />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-    </Router>
+    <CartProvider> {/* Wrap the Router with CartProvider */}
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              isAuthenticated ? (
+                <Navigate to="/auth-home" />
+              ) : (
+                <Home authenticateUser={authenticateUser} isAuthenticated={isAuthenticated} />
+              )
+            }
+          />
+          <Route
+            path="/auth-home"
+            element={
+              isAuthenticated ? (
+                <AuthHome />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          <Route path="/product-list" element={<ProductList />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/settings"
+            element={isAuthenticated ? <Settings /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/login"
+            element={<Login authenticateUser={authenticateUser} isAuthenticated={isAuthenticated} />}
+          />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
 }
 
