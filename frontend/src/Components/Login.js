@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import Axios from 'axios';
-import '../Styles/Login.css';
+import '../Styles/Login.css'; // Make sure the path is correct
 
 const Login = ({ authenticateUser }) => {
   const location = useLocation();
@@ -33,29 +33,36 @@ const Login = ({ authenticateUser }) => {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="button" onClick={loginUser}>
-          Log In
-        </button>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <p>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
-        </p>
-      </form>
+    <div className="container">
+      <div className="design-container">
+        <h1>Neel Calendar</h1>
+        {/* Replace with your actual image file */}
+        <img src="C:\Users\mrson\Desktop\NEEL\neel_front.io\frontend\src\Components\calendar.png" alt="Calendar Design" />
+      </div>
+      <div className="login-container">
+        <h2>Login</h2>
+        <form>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="button" onClick={loginUser}>
+            Log In
+          </button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <p>
+            Don't have an account? <Link to="/signup">Sign Up</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
