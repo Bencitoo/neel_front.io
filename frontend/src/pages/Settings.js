@@ -1,15 +1,15 @@
 // Settings.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../Styles/Settings.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../assets/css/Settings.css";
 
 const Settings = () => {
-  const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [profilePicture, setProfilePicture] = useState(null); // For handling file uploads
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -37,28 +37,28 @@ const Settings = () => {
       // Example: make an API call to update user information
       // Replace this with your actual API endpoint and payload
       const formData = new FormData();
-      formData.append('name', name);
-      formData.append('phoneNumber', phoneNumber);
-      formData.append('paymentMethod', paymentMethod);
+      formData.append("name", name);
+      formData.append("phoneNumber", phoneNumber);
+      formData.append("paymentMethod", paymentMethod);
       if (profilePicture) {
-        formData.append('profilePicture', profilePicture);
+        formData.append("profilePicture", profilePicture);
       }
 
-      const response = await fetch('/api/update-user', {
-        method: 'PUT',
+      const response = await fetch("/api/update-user", {
+        method: "PUT",
         body: formData,
       });
 
       if (response.ok) {
-        console.log('User information updated successfully!');
-        setSuccessMessage('User information updated successfully!');
+        console.log("User information updated successfully!");
+        setSuccessMessage("User information updated successfully!");
       } else {
-        console.error('Failed to update user information.');
-        setErrorMessage('Failed to update user information.');
+        console.error("Failed to update user information.");
+        setErrorMessage("Failed to update user information.");
       }
     } catch (error) {
-      console.error('Error updating user information:', error);
-      setErrorMessage('Error updating user information.');
+      console.error("Error updating user information:", error);
+      setErrorMessage("Error updating user information.");
     }
   };
 
@@ -69,7 +69,13 @@ const Settings = () => {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form onSubmit={handleSettingsSubmit}>
         <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" value={name} onChange={handleNameChange} />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={name}
+          onChange={handleNameChange}
+        />
 
         <label htmlFor="phoneNumber">Phone Number:</label>
         <input
