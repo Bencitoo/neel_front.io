@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
-import Axios from 'axios';
-import '../Styles/Login.css'; // Make sure the path is correct
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import Axios from "axios";
+import "../assets/css/Login.css"; // Make sure the path is correct
+import CalendarImage from "../assets/images/Calendar.png";
 
 const Login = ({ authenticateUser }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const emailParam = params.get('email');
+    const emailParam = params.get("email");
     if (emailParam) {
       setEmail(emailParam);
     }
@@ -20,10 +21,13 @@ const Login = ({ authenticateUser }) => {
 
   const loginUser = async () => {
     try {
-      const response = await Axios.post('http://localhost:2000/api/signin', { email, password });
+      const response = await Axios.post("http://localhost:2000/api/signin", {
+        email,
+        password,
+      });
       if (response.status === 200) {
         authenticateUser();
-        navigate('/');
+        navigate("/");
       } else {
         setErrorMessage(response.data.message);
       }
@@ -37,7 +41,7 @@ const Login = ({ authenticateUser }) => {
       <div className="design-container">
         <h1>Neel Calendar</h1>
         {/* Replace with your actual image file */}
-        <img src="C:\Users\mrson\Desktop\NEEL\neel_front.io\frontend\src\Components\calendar.png" alt="Calendar Design" />
+        <img src={CalendarImage} alt="Calendar Design" />
       </div>
       <div className="login-container">
         <h2>Login</h2>

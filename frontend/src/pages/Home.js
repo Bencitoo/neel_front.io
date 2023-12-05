@@ -1,21 +1,22 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { FaList, FaShoppingCart, FaCog, FaSignOutAlt } from 'react-icons/fa';
-import { CartContext } from './CartContext'; // Import CartContext
-import '../Styles/AuthHome.css';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { FaList, FaShoppingCart, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { CartContext } from "../context/CartContext"; // Import CartContext
+import "../assets/css/AuthHome.css";
 
 // Import images
-import chineseImage from '../Styles/chinese.jpg';
-import plainImage from '../Styles/plain.jpg';
-import personalizedImage from '../Styles/personalized.jpg';
+import chineseImage from "../assets/images/ChineseCalendar.jpg";
+import plainImage from "../assets/images/PlainCalendar.jpg";
+import personalizedImage from "../assets/images/PersonalizedCalendar.jpg";
 
 const AuthHome = () => {
   const { cartItems, addToCart } = useContext(CartContext); // Use addToCart from context
 
-  const userProfilePicture = 'https://avatars.githubusercontent.com/u/112555352?s=400&u=bd814d1e9298229771e502896aed4bc121b700b2&v=4';
+  const userProfilePicture =
+    "https://avatars.githubusercontent.com/u/112555352?s=400&u=bd814d1e9298229771e502896aed4bc121b700b2&v=4";
 
   const handleLogout = () => {
-    window.location.href = '/login';
+    window.location.href = "/login";
   };
 
   // Function to create a product object and add it to the cart
@@ -39,14 +40,24 @@ const AuthHome = () => {
             <div className="product">
               <img src={chineseImage} alt="Chinese Product" />
               <div className="add-to-cart">
-                <button onClick={() => addProductToCart('Chinese Product', chineseImage)}>Add to Cart</button>
+                <button
+                  onClick={() =>
+                    addProductToCart("Chinese Product", chineseImage)
+                  }
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
             {/* Product 2 */}
             <div className="product">
               <img src={plainImage} alt="Plain Product" />
               <div className="add-to-cart">
-                <button onClick={() => addProductToCart('Plain Product', plainImage)}>Add to Cart</button>
+                <button
+                  onClick={() => addProductToCart("Plain Product", plainImage)}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>

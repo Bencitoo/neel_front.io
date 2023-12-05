@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import { CartContext } from './CartContext'; // Import CartContext
-import '../Styles/cart.css';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { CartContext } from "../context/CartContext"; // Import CartContext
+import "../assets/css/Cart.css";
 
 const Cart = () => {
   const navigate = useNavigate();
   const { cartItems, removeFromCart } = useContext(CartContext);
 
   const handleCheckout = () => {
-    navigate('/checkout');
+    navigate("/checkout");
   };
 
   return (
@@ -18,17 +18,23 @@ const Cart = () => {
         <div>
           {cartItems.map((item, index) => (
             <div key={index} className="cart-item">
-              <img src={item.image} alt={item.name} className="cart-item-image" />
+              <img
+                src={item.image}
+                alt={item.name}
+                className="cart-item-image"
+              />
               <p>{item.name}</p>
               <button onClick={() => removeFromCart(item)}>Remove</button>
             </div>
           ))}
-          <button className="checkout-button" onClick={handleCheckout}>Proceed to Checkout</button>
+          <button className="checkout-button" onClick={handleCheckout}>
+            Proceed to Checkout
+          </button>
         </div>
       ) : (
         <p>Your shopping cart is empty.</p>
       )}
-      <button className="back-button" onClick={() => navigate('/auth-home')}>
+      <button className="back-button" onClick={() => navigate("/auth-home")}>
         Back to Home
       </button>
     </div>

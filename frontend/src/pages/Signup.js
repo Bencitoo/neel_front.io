@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
-import '../Styles/Signup.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Axios from "axios";
+import "../assets/css/Signup.css";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -25,11 +25,15 @@ const Signup = () => {
 
   const signupUser = async () => {
     try {
-      const response = await Axios.post('http://localhost:2000/api/signup', { username, email, password });
+      const response = await Axios.post("http://localhost:2000/api/signup", {
+        username,
+        email,
+        password,
+      });
       if (response.status === 201) {
-        setSuccessMessage('Account successfully created!');
+        setSuccessMessage("Account successfully created!");
         setTimeout(() => {
-          navigate('/login');
+          navigate("/login");
         }, 2000);
       } else {
         setErrorMessage(response.data.error);
@@ -43,7 +47,7 @@ const Signup = () => {
     event.preventDefault();
 
     if (password.length < 8) {
-      setErrorMessage('Password must be at least 8 characters');
+      setErrorMessage("Password must be at least 8 characters");
       return;
     }
 

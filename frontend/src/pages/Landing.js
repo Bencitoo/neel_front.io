@@ -1,10 +1,10 @@
 // Home.js
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaBars, FaUser, FaShoppingCart, FaBell } from 'react-icons/fa'; // Import icons
-import '../Styles/Home.css';
-import chineseImage from '../Styles/chinese.jpg'; // Import featured product image
-import plainImage from '../Styles/plain.jpg'; // Import featured product image
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaBars, FaUser, FaShoppingCart, FaBell } from "react-icons/fa"; // Import icons
+import "../assets/css/Home.css";
+import chineseImage from "../assets/images/ChineseCalendar.jpg"; // Import featured product image
+import plainImage from "../assets/images/PlainCalendar.jpg"; // Import featured product image
 
 const Home = () => {
   const featuredProductLink = "/login"; // Replace with the actual login page route
